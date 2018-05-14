@@ -3,6 +3,8 @@ require_once("Connection.php");
 class Model
 {
     protected static $pk;
+    protected $fields;
+
     public static function getPk()
     {
         if (!static::$pk) {
@@ -22,32 +24,19 @@ class Model
 
     public static function getByPk($pk)
     {
-        $pk_field = static::getPk();
-        $table = static::$__table__;
-        $sql = 'SELECT * FROM :table WHERE :pk_field = :pk';
-        $query = Connection::get_instance() -> prepare($sql);
-        $params = [':table' => $table, ':pk_field' => $pk_field, ':pk' => $pk];
-        $query -> execute($params);
+        $sql = 'SELECT * FROM ' . static::$__table__ . ' WHERE ' . static::getPk() . ' = :pk';
+        $query = Connection::get_instance()->prepare($sql);
+        $params = [':pk' => $pk];
+        $query->execute($params);
         return $query->fetch(PDO::FETCH_ASSOC);
     }
 
-    public static function getColumns()
+    public function __construct($result)
     {
-        static::$pk = (static::$pk) ? static::$pk : static::getPk();
-//        if (!static::$pk) {
-//            static::$pk = static::getPk();
-//        }
-        return static::$pk;
+        $this->fields = $result;
     }
-
-//    public static function getAll()
-//    {
-//        $sql = "select * from " . static::$__table__  . ";";
-//        $query = Connection::get_instance()->prepare($sql);
-//        $query->execute();
-//        return $query->fetchAll(PDO::FETCH_ASSOC);
-//    }
 }
+
 
 class Posts extends Model
 {
