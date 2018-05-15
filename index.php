@@ -102,7 +102,6 @@ class Model
                 $id = $pdo->lastInsertId();
                 $this->setPk($pk, $id);
             }
-            var_dump($this);
             $this->dirty = false;
         }
     }
@@ -135,4 +134,14 @@ class Comments extends Model
 {
     protected static $__table__ = "comments";
 }
+
+$post = new Posts();
+$post->author = "Maks";
+$post->message = "Exp";
+$post->save();
+
+$comment = Comments::getByPk(1);
+$comment->message = "Exp2";
+$comment->save();
+
 

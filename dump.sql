@@ -1,8 +1,8 @@
--- MySQL dump 10.13  Distrib 5.7.22, for Linux (x86_64)
+-- MySQL dump 10.13  Distrib 5.7.20, for Win64 (x86_64)
 --
 -- Host: localhost    Database: modeltest
 -- ------------------------------------------------------
--- Server version	5.7.22-0ubuntu0.16.04.1
+-- Server version	5.7.20
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -29,7 +29,7 @@ CREATE TABLE `comments` (
   `message` varchar(255) NOT NULL DEFAULT '',
   `time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id_comment`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -38,6 +38,7 @@ CREATE TABLE `comments` (
 
 LOCK TABLES `comments` WRITE;
 /*!40000 ALTER TABLE `comments` DISABLE KEYS */;
+INSERT INTO `comments` VALUES (1,1,'Maks','Exp2','2018-05-15 14:23:59');
 /*!40000 ALTER TABLE `comments` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -54,7 +55,7 @@ CREATE TABLE `posts` (
   `message` varchar(255) NOT NULL DEFAULT '',
   `time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id_post`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=28 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -63,7 +64,7 @@ CREATE TABLE `posts` (
 
 LOCK TABLES `posts` WRITE;
 /*!40000 ALTER TABLE `posts` DISABLE KEYS */;
-INSERT INTO `posts` VALUES (1,'Maks','Hello world','2018-05-13 17:15:56');
+INSERT INTO `posts` VALUES (1,'Taras','Hello world','2018-05-13 17:15:56'),(2,'Maks','Hello from method','2018-05-15 11:05:51'),(3,'Maks','Hello from method','2018-05-15 11:07:20'),(4,'Maks','Hello wordl 2','2018-05-15 11:07:20'),(5,'Maks','One','2018-05-15 11:09:26'),(6,'Maks','Two','2018-05-15 11:09:26'),(7,'Maks','111','2018-05-15 11:17:24'),(8,'Maks','111','2018-05-15 11:18:09'),(9,'Maks','111','2018-05-15 11:19:34'),(10,'Maks','222','2018-05-15 11:19:34'),(11,'Maks','111','2018-05-15 11:19:46'),(12,'Maks','222','2018-05-15 11:19:46'),(13,'Maks','111','2018-05-15 11:20:22'),(14,'Maks','222','2018-05-15 11:20:22'),(15,'Maks','111','2018-05-15 11:20:44'),(16,'Maks','222','2018-05-15 11:20:44'),(17,'Maks','111','2018-05-15 11:22:17'),(18,'Maks','111','2018-05-15 11:24:11'),(19,'Maks','222','2018-05-15 11:24:11'),(20,'Maks','111','2018-05-15 11:25:51'),(21,'Maks','222','2018-05-15 11:25:51'),(22,'Maks','222','2018-05-15 11:29:14'),(23,'Maks','222','2018-05-15 11:29:43'),(24,'Maks','222','2018-05-15 11:32:19'),(25,'Vasilisa','222','2018-05-15 11:37:35'),(26,'Maks','Exp','2018-05-15 14:25:29'),(27,'Maks','Exp','2018-05-15 14:26:04');
 /*!40000 ALTER TABLE `posts` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -76,4 +77,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-05-14 10:47:10
+-- Dump completed on 2018-05-15 20:48:45
