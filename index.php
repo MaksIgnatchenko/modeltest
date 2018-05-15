@@ -30,6 +30,11 @@ class Model
         }
     }
 
+    protected function setPk($pk, $id)
+    {
+        $this->data[$pk]  = $id;
+    }
+
     public static function getPk()
     {
         if (!static::$pk) {
@@ -81,17 +86,23 @@ class Model
         if ($this->dirty) {
             $pk = static::getPk();
             list($setArray, $setString) = $this->buildSetValues();
+            $pdo = Connection::get_instance();
             $execute = [];
             foreach ($setArray as $key => $value) {
                 $execute[":" . $key] = $value;
             }
             if (isset($this->data[$pk])) {
                 $sql = "update " . static::$__table__ . " set " . $setString . " where " . $pk . " = " . $this->data[$pk];
+                $query = $pdo->prepare($sql);
+                $query->execute($execute);
             }   else {
                 $sql = "insert into " . static::$__table__ . " set " . $setString;
+                $query = $pdo->prepare($sql);
+                $query->execute($execute);
+                $id = $pdo->lastInsertId();
+                $this->setPk($pk, $id);
             }
-            $query = Connection::get_instance()->prepare($sql);
-            $query->execute($execute);
+            var_dump($this);
             $this->dirty = false;
         }
     }
@@ -124,3 +135,4 @@ class Comments extends Model
 {
     protected static $__table__ = "comments";
 }
+
